@@ -36,3 +36,25 @@ class LinkedList:
         self.tail.next = None
         self.size -= 1
         return removed_value
+
+    def remove(self, node):
+        if node == None:
+            return
+        if node == self.head and node == self.tail:
+            self.head = None
+            self.tail = None
+
+        elif node == self.head:
+            self.head = self.head.next
+            self.head.previous = None
+
+        elif node == self.tail:
+            self.tail = self.tail.previous
+            self.tail.next = None
+
+        else:
+            node.next.previous = node.previous
+            node.previous.next = node.next
+        node.next = None
+        node.previous = None
+        self.size -= 1
