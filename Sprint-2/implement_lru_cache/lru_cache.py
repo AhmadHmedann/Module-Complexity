@@ -7,6 +7,8 @@ class LruCache:
             self.key = key
 
     def __init__(self, limit):
+        if limit <= 0:
+           raise ValueError("limit must be greater than 0")
         self.head = None
         self.tail = None
         self.limit =  limit
