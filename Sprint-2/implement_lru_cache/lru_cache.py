@@ -58,3 +58,19 @@ class LruCache:
         self.move_to_head(target)
         return target.value
 
+    def set(self,key,value):
+        target = self.cache.get(key)
+
+        if target is not None:
+            target.value = value
+            self.move_to_head(target)
+
+        else:
+            target = self.clsNode(value,key)
+            self.add_to_head(target)
+            self.cache[key] = target
+
+            if len(self.cache) > self.limit:
+                old_tail = self.tail
+                self.remove(old_tail)
+                del self.cache[old_tail.key]
