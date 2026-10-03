@@ -47,4 +47,12 @@ class LruCache:
         self.remove(node)
         self.add_to_head(node)
 
-       
+    # cache {key,node}
+    def get(self,key):
+        target = self.cache.get(key)   
+        if target == None:
+            return None
+        
+        self.move_to_head(target)
+        return target.value
+
