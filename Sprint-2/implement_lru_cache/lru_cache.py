@@ -13,6 +13,8 @@ class LruCache:
         self.cache = {}
 
     def add_to_head(self, node):
+      if node == None:
+          return
       if self.head is None:
         self.head = node
         self.tail = node
