@@ -9,12 +9,11 @@ def find_longest_common_prefix(strings: List[str]):
     """
     seen = set()
     longest = ""
-    for  string in strings:
-        for i in range(1,len(string)+1) :
+    for string in strings:
+        for i in range(1, len(string) + 1):
             prefix = string[:i]
             if prefix in seen and len(prefix) > len(longest):
                 longest = prefix
 
             seen.add(prefix)
     return longest
-
