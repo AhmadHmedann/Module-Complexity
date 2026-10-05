@@ -1,6 +1,5 @@
 from typing import Dict, List
 
-
 # def calculate_sum_and_product(input_numbers: List[int]) -> Dict[str, int]:
 #     """
 #     Calculate the sum and product of integers in a list.
@@ -28,12 +27,13 @@ from typing import Dict, List
 #     for current_number in input_numbers:
 #         product *= current_number
 
+
 #     return {"sum": sum, "product": product}
 def calculate_sum_and_product(input_numbers: List[int]) -> Dict[str, int]:
-    total:int = 0
-    product:int = 1
+    total: int = 0
+    product: int = 1
     for num in input_numbers:
-        total+=num
-        product*=num
+        total += num
+        product *= num
 
-    return {"sum": total, "product": product}    
+    return {"sum": total, "product": product}
