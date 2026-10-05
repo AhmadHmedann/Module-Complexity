@@ -20,13 +20,14 @@ ItemType = TypeVar("ItemType")
 #                 common_items.append(i)
 #     return common_items
 
+
 def find_common_items(
     first_sequence: Sequence[ItemType], second_sequence: Sequence[ItemType]
 ) -> List[ItemType]:
+    first_set = set(first_sequence)
     second_set = set(second_sequence)
-    common = []
-    for item in first_sequence:
-        if item in second_set:
-            common.append(item)
 
-    return common        
+    common = first_set.intersection(second_set)
+    # common = first_set & second_set
+
+    return list(common)
