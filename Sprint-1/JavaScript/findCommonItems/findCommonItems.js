@@ -15,12 +15,14 @@
 export const findCommonItems = (firstArray, secondArray) => {
   const secondSet = new Set(secondArray); //O(M)
   const commonSet = new Set();
+
   for (const item of firstArray) {
     //O(N)
     if (secondSet.has(item))
       //O(1) on Ave
       commonSet.add(item); //O(1)   On Ave
   }
+  
   return [...commonSet]; //O(K)
 };
 // Time Complexity: O(n + m)

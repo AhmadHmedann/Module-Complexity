@@ -23,21 +23,16 @@
 // Space Complexity: O(1)
 // Optimal Time Complexity: O(N)
 
-
 export function hasPairWithSum(numbers, target) {
- 
- const seen = new Set ();
-  for (const num of numbers)
-  {
-    const needed =  target - num;
+  const seen = new Set();
+  for (const num of numbers) {
+    const needed = target - num;
     if (seen.has(needed)) return true;
-    
-      seen.add(num);
 
-    
+    seen.add(num);
   }
-  
-  return  false;
+
+  return false;
 }
 // Original Time Complexity: O(n^2)
 //two nested loop compare each number with remaining numbers

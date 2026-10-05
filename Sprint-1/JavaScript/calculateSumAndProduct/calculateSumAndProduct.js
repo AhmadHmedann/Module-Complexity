@@ -21,9 +21,9 @@ export function calculateSumAndProduct(numbers) {
   let product = 1;
   for (const num of numbers) {
     sum += num;
-     product *= num;
+    product *= num;
   }
-   return {
+  return {
     sum: sum,
     product: product,
   };
