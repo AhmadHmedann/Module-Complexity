@@ -1,5 +1,7 @@
 class LinkedList:
-    class clsNode:
+    class Node:
+        __slots__ = ("next","previous","value")
+
         def __init__(self, value):
             self.next = None
             self.previous = None
@@ -11,7 +13,7 @@ class LinkedList:
         self.size = 0
 
     def push_head(self, value):
-        new_node = self.clsNode(value=value)
+        new_node = self.Node(value=value)
         if self.head == None:
             self.head = new_node
             self.tail = new_node
@@ -27,15 +29,9 @@ class LinkedList:
             return
         removed_value = self.tail.value
 
-        if self.head == self.tail:
-            self.head = None
-            self.tail = None
-            self.size -= 1
-            return removed_value
-        self.tail = self.tail.previous
-        self.tail.next = None
-        self.size -= 1
+        self.remove(self.tail)
         return removed_value
+      
 
     def remove(self, node):
         if node == None:
