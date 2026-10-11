@@ -1,77 +1,49 @@
+from linked_list import LinkedList
+
+
 class LruCache:
-    class clsNode:
-        def __init__(self, value, key):
-            self.next = None
-            self.previous = None
-            self.value = value
-            self.key = key
 
     def __init__(self, limit):
         if limit <= 0:
             raise ValueError("limit must be greater than 0")
-        self.head = None
-        self.tail = None
+        # self.head = None
+        # self.tail = None
+        # self.limit = limit
+        # self.cache = {}
+        self.list = LinkedList()
         self.limit = limit
         self.cache = {}
 
-    def add_to_head(self, node):
-        if node == None:
-            return
-        if self.head is None:
-            self.head = node
-            self.tail = node
-        else:
-            node.next = self.head
-            self.head.previous = node
-            self.head = node
-
-    def remove(self, node):
-        if node == None:
-            return
-        if node == self.head and node == self.tail:
-            self.head = None
-            self.tail = None
-
-        elif node == self.head:
-            self.head = self.head.next
-            self.head.previous = None
-
-        elif node == self.tail:
-            self.tail = self.tail.previous
-            self.tail.next = None
-
-        else:
-            node.next.previous = node.previous
-            node.previous.next = node.next
-        node.next = None
-        node.previous = None
-
     def move_to_head(self, node):
-        self.remove(node)
-        self.add_to_head(node)
 
-    # cache {key,node}
+        key, value = node.value
+
+        self.list.remove(node)
+        new_node = self.list.push_head((key, value))
+        self.cache[key] = new_node
+
     def get(self, key):
         target = self.cache.get(key)
         if target == None:
             return None
 
         self.move_to_head(target)
-        return target.value
+
+        return target.value[1]
 
     def set(self, key, value):
         target = self.cache.get(key)
 
         if target is not None:
-            target.value = value
+
+            target.value = (key, value)
             self.move_to_head(target)
 
         else:
-            target = self.clsNode(value, key)
-            self.add_to_head(target)
-            self.cache[key] = target
+
+            new_Node = self.list.push_head((key, value))
+            self.cache[key] = new_Node
 
             if len(self.cache) > self.limit:
-                old_tail = self.tail
-                self.remove(old_tail)
-                del self.cache[old_tail.key]
+                old_key, old_value = self.list.pop_tail()
+                del self.cache[old_key]
